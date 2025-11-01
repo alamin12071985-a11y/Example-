@@ -1,0 +1,37 @@
+import telebot
+from telebot import types
+
+bot = telebot.TeleBot("8377707435:AAHSkK2UPAovUxM9hT_-6TJ1cScPDJ5m4vM")
+
+@bot.message_handler(commands=['start'])
+def welcome(message):
+    markup = types.InlineKeyboardMarkup()
+    
+    # ৩টা বাটন
+    open_app = types.InlineKeyboardButton(
+        "🚀 Open App",
+        url="https://alamin12071985-a11y.github.io/cine-link/"
+    )
+    youtube = types.InlineKeyboardButton(
+        "▶️ YouTube",
+        url="https://youtube.com/@cinelinkofficial?si=FtrXR7mBXEEnNzWT"
+    )
+    get_iphone = types.InlineKeyboardButton(
+        "📱 Get iPhone",
+        url="https://t.me/cinelinkofficialbot"
+    )
+
+    # বাটনগুলো যুক্ত করা
+    markup.row(open_app)
+    markup.row(youtube)
+    markup.row(get_iphone)
+
+    bot.send_message(
+        message.chat.id,
+        "🎬 **Welcome to Cine Link Bot!**\n\n👇 Choose an option below to get started:",
+        parse_mode="Markdown",
+        reply_markup=markup
+    )
+
+# বট চালু রাখা
+bot.infinity_polling()
